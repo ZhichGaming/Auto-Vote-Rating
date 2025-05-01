@@ -679,10 +679,10 @@ var allProjects = {
         defaultLand: () => 'www.minecraftkrant.nl',
         langList: () => new Map([
             ['www.minecraftkrant.nl', 'Nederlands'],
-            ['minecraft-news.net', 'English']
+            ['minecraftservers.page', 'English']
         ])
     },
-    'minecraft-news.net': {},
+    'minecraftservers.page': {},
     'trackyserver.com': {
         pageURL: (project) => 'https://www.trackyserver.com/server/' + project.id,
         voteURL: (project) => 'https://www.trackyserver.com/server/' + project.id,
@@ -1661,7 +1661,7 @@ allProjects['minecraftserverlist.eu'] = allProjects['serverpact.com']
 
 allProjects['top-serveurs.net'] = allProjects['top-games.net']
 
-allProjects['minecraft-news.net'] = allProjects['minecraftkrant.nl']
+allProjects['minecraftservers.page'] = allProjects['minecraftkrant.nl']
 
 allProjects['pixelmonservers.com'] = allProjects['mineservers.com']
 allProjects['tekkitserverlist.com'] = allProjects['mineservers.com']
