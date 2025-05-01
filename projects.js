@@ -1,4 +1,4 @@
-//Список рейтингов
+//List of ratings
 // noinspection JSUnusedGlobalSymbols,ES6ConvertVarToLetConst,SpellCheckingInspection,HttpUrlsUsage
 
 var allProjects = {
@@ -456,7 +456,7 @@ var allProjects = {
                 return doc.querySelector('.servernameh1').textContent
             } else {
                 // doc.querySelector('.bot-title-bp h2').textContent
-                // TODO к сожалению сайт не даёт в html сведений о названии бота
+                // TODO unfortunately the site doesn't provide bot name information in the HTML
                 return null
             }
         },
@@ -705,7 +705,7 @@ var allProjects = {
         exampleURL: () => ['https://topmcservers.com/server/', '17', ''],
         parseURL: (url) => ({id: url.pathname.split('/')[2]}),
         timeout: () => ({hour: 0}),
-        optionalNick: () => true // TODO почему-то нет никнейма, возможно сайт не доделан
+        optionalNick: () => true // TODO for some reason there's no nickname, maybe the site isn't finished
     },
     'bestservers.com': {
         pageURL: (project) => 'https://bestservers.com/server/' + project.id + '/vote',
@@ -1265,7 +1265,7 @@ var allProjects = {
         pageURL: (project) => 'https://minecraftsurvivalservers.com/server/' + project.id,
         voteURL: (project) => 'https://minecraftsurvivalservers.com/vote/' + project.id,
         projectName: () => {
-            // Хрень какая-то, в fetch запросе отсылается не страница а предзагрузка
+            // Some nonsense, the fetch request sends not the page but a preload
             // return doc.querySelector('div.items-center > span.text-xl.font-semibold').textContent.trim()
             return ''
         },
@@ -1358,13 +1358,13 @@ var allProjects = {
     'loliland.ru': {
         pageURL: () => 'https://loliland.net/bonus',
         voteURL: () => 'https://loliland.net/bonus',
-        projectName: () => 'Бонус за подписку',
+        projectName: () => 'Bonus for subscription',
         exampleURL: () => ['https://loliland.net/bonus', '', ''],
         URLMain: () => 'loliland.ru',
         parseURL: () => ({id: 'bonus subscribe'}),
         timeout: () => ({
             hours: 24,
-            minutes: 1 // TODO 1-на минутная задержка так как LoliLand не умеет считать правильно 24 часа
+            minutes: 1 // TODO 1-minute delay because LoliLand can't count 24 hours correctly
         }),
         notRequiredCaptcha: () => true,
         notRequiredNick: () => true,
@@ -1460,11 +1460,11 @@ var allProjects = {
         parseURL: (url) => ({id: url.pathname.split('/')[2]}),
         oneProject: () => 3
     },
-    // Похоже на копию ServerListGames, как минимум по технической части схоже
+    // Looks like a copy of ServerListGames, at least the technical part is similar
     'findmcserver.com': {
         pageURL: (project) => 'https://findmcserver.com/server/' + project.id,
         voteURL: (project) => 'https://findmcserver.com/server/' + project.id,
-        projectName: () => null, // сайт-конструктор, отдаёт пустую страницу со скриптами на загрузку, название достать слишком сложно
+        projectName: () => null, // site-constructor, returns an empty page with scripts to load, it's too complicated to get the name
         exampleURL: () => ['https://findmcserver.com/server/', 'sootmc', ''],
         parseURL: (url) => ({id: url.pathname.split('/')[2]}),
         timeout: () => ({hour: 0})
@@ -1572,7 +1572,7 @@ var allProjects = {
         projectName: (doc) => doc.querySelector('#page h1').innerText,
         exampleURL: () => ['https://liste-serv-minecraft.fr/serveur?id=', '353', ''],
         parseURL: (url) => ({id: url.searchParams.get('id')}),
-        // TODO должен быть такой таймаут, но пока ещё не реализован таймаут по минутам, будем на 30 минут позже голосовать
+        // TODO should be this timeout, but timeout by minutes is not yet implemented, we'll vote 30 minutes later
         // timeout: () => ({hour: 0, minute: 30})
         timeout: () => ({hour: 1})
     },
@@ -1622,7 +1622,7 @@ var allProjects = {
 }
 
 
-// Если у этого мониторинга (сайта) несколько подпроектов или доменов
+// If this monitoring (site) has several subprojects or domains
 allProjects['topcraft.club'] = allProjects['topcraft.ru']
 
 allProjects['ark-servers.net'] = allProjects['listforge.net']
@@ -1699,7 +1699,7 @@ function extractHostname(url) {
     return hostname
 }
 
-// Удалённая конфигурация расширения
+// Remote extension configuration
 // if (typeof db !== 'undefined' && typeof settings !== 'undefined' && settings.disabledNotifStart != null && !settings.disabledSendErrorSentry && (settings.enabledReportTimeout || !settings.enabledReportTooManyAttempts)) {
 //     settings.enabledReportTimeout = false
 //     settings.enabledReportTooManyAttempts = true

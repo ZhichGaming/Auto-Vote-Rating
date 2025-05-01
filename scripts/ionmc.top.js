@@ -1,5 +1,5 @@
 async function vote(first) {
-    //Если пользователь не авторизован
+    //If user is not authorized
     if (document.querySelector('div.notification.is-primary') != null) {
         if (document.querySelector('div.notification.is-primary').textContent.includes('Голосование в рейтинге разрешено только авторизированным пользователям')) {
             chrome.runtime.sendMessage({auth: document.querySelector('div.notification.is-primary').innerText})
@@ -8,15 +8,15 @@ async function vote(first) {
         }
         return
     }
-    //Если есть ошибка
+    //If there is an error
     if (document.querySelector('div.notification is-danger') != null) {
-        //Если не удалось пройти капчу
+        //If captcha verification failed
         if (document.querySelector('div[class="notification is-danger"]').textContent != null) {
             chrome.runtime.sendMessage({message: document.querySelector('div.notification.is-danger').textContent})
         }
         return
     }
-    //Если успешное автоголосование
+    //If auto-vote was successful
     if (document.querySelector('div.notification.is-success') != null) {
         if (document.querySelector('div.notification.is-success').textContent.includes('Голос засчитан')) {
             chrome.runtime.sendMessage({successfully: true})

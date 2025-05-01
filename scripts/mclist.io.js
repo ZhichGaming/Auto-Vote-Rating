@@ -5,7 +5,7 @@ async function vote(first) {
 
     const project = await getProject()
     document.querySelector('#nickname').value = project.nick
-    // TODO ааа??? а точно здесь нужен await???
+    // TODO wait??? is await really needed here???
     // noinspection ES6RedundantAwait
     await document.querySelector('#nickname').dispatchEvent(new Event('input'))
     document.querySelector('#submit').click()

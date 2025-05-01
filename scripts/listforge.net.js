@@ -1,5 +1,5 @@
 async function vote(first) {
-    //Пилюля от жадности
+    //Remedy for greediness
     if (document.getElementById('adblock-notice')) document.getElementById('adblock-notice').style.display = 'none'
     if (document.getElementById('adsense-notice')) document.getElementById('adsense-notice').style.display = 'none'
     if (document.getElementById('vote-loading-block')) document.getElementById('vote-loading-block').style.display = 'none'
@@ -69,7 +69,7 @@ async function vote(first) {
         chrome.runtime.sendMessage(request)
     }
 
-    // Иногда если сервер/проект был удалён то сайт просто переадресует на главную страницу или на список серверов никак не сообщая о об ошибке 404 или о том что сервер удалён
+    // Sometimes if the server/project was deleted, the site simply redirects to the main page or to the server list without reporting a 404 error or that the server was deleted
     if (document.querySelector('ul.pagination')) {
         const request = {}
         request.errorVoteNoElement = 'It looks like the site redirected to the main page (list of servers), most likely this server/project was deleted. If this is not the case and you think it is a error, inform the extension developer'
@@ -78,21 +78,21 @@ async function vote(first) {
         return
     }
 
-    //Если на странице есть hCaptcha то мы ждём её решения
+    // If the page has HCAPTCHA, then we are waiting for its solution
     if ((document.querySelector('div.h-captcha') || document.querySelector('.cf-turnstile') || document.querySelector('#captcha-block')) && first) {
         return
     }
 
-    //Соглашаемся с Privacy Policy
+    //Accept Privacy Policy
     if (document.querySelector('#accept')) document.querySelector('#accept').checked = true
 
-    //Если требуется авторизация Steam
+    //If Steam authorization is required
     if (document.querySelector('form[name="steam_form"] > input[type="image"]') != null) {
         document.querySelector('form[name="steam_form"] > input[type="image"]').click()
         return
     }
 
-    //Если нас каким-то образом выкинул на страницу описания сервера
+    //If we were somehow redirected to the server description page
     if (document.querySelector('a[role="button"][title="Vote"]')) {
         document.querySelector('a[role="button"][title="Vote"]').click()
         return
@@ -102,7 +102,7 @@ async function vote(first) {
         return
     }
 
-    // На случай если гугл капча не полностью загрузилась, во избежание ошибки "Captcha data missing"
+    // In case Google captcha did not completely load, to avoid the error "Captcha Data Missing" 
     if (document.querySelector('#vote_form div.g-recaptcha')) {
         if (!document.querySelector('#g-recaptcha-response')) {
             await new Promise(resolve => {
@@ -117,7 +117,7 @@ async function vote(first) {
     }
 
     const project = await getProject()
-    //Вводим ник если он существует
+    //Enter nickname if it exists
     if (document.getElementById('nickname') != null) {
         if (project.nick == null || project.nick === '') {
             chrome.runtime.sendMessage({requiredNick: true})
@@ -125,13 +125,13 @@ async function vote(first) {
         }
 
         document.getElementById('nickname').value = project.nick
-        //Кликаем проголосовать, если нет hCaptcha
+        //Click to vote, if there's no hCaptcha
         if (document.getElementById('voteBtn') != null) {
             document.getElementById('voteBtn').click()
-        //Если hCaptcha
+        //If hCaptcha
         } else if (document.querySelector('button[form="vote_form"]') != null) {
                 document.querySelector('button[form="vote_form"]').click()
-        //Ещё какая-то разновидность кнопки Vote (Specially for Minecraft Pocket Servers)
+        //Another variety of Vote button (Specially for Minecraft Pocket Servers)
         } else {
             // document.querySelector('a[href="javascript:document.vote_form.submit();"]').click()
             document.querySelector('form[name="vote_form"]').submit()
