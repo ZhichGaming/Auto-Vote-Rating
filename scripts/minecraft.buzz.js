@@ -1,5 +1,5 @@
 async function vote(first) {
-    if (first) return
+    // if (first) return
 
     const project = await getProject()
     document.getElementById('review-check').checked = false
