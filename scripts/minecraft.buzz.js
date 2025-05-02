@@ -1,10 +1,15 @@
-async function vote(first) {
-    // if (first) return
+async function vote(first) {    
+    if (!first) {
+        document.querySelectorAll("#submitter")[1].click()
+        return
+    }
+
+    if (document.location.pathname === '/') return
 
     const project = await getProject()
     document.getElementById('review-check').checked = false
     document.getElementById('username-input').value = project.nick
-    document.querySelector('#vote button[type="submit"]').click()
+    document.querySelector('#submitter').click()
 }
 
 const timer = setInterval(()=>{
