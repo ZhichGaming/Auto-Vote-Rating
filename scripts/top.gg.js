@@ -28,7 +28,7 @@ async function vote(first) {
     let countAlreadyVoted = 0
     const timer1 = setInterval(() => {
         try {
-            const result = findElement('p.chakra-text', ['thanks for voting', 'already voted', 'something went wrong'])
+            const result = findElement('.text-ui', ['thanks for voting', 'already voted', 'something went wrong'])
             if (result != null) {
                 if (result.textContent.toLowerCase().includes('thanks for voting')) {
                     chrome.runtime.sendMessage({successfully: true})
